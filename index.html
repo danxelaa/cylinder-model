@@ -1,0 +1,156 @@
+<!-- 
+  index.html
+  Daniela A. Olano Guia
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cylinder Model</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Load external libs -->
+    <script src="js/lib/cuon-matrix.js"></script>
+    <script src="js/lib/cuon-utils.js"></script>
+    <script src="js/lib/webgl-debug.js"></script>
+    <script src="js/lib/webgl-utils.js"></script>
+
+    <!-- Load internal libs -->
+    <script src="js/cylinder.js"></script>
+
+    <!-- Load main -->
+    <script src="js/script.js"></script>
+  </head>
+
+  <body onload="main()" style="margin: 50px;">
+    <h1>Cylinder Model</h1>
+    <hr>
+    <table style="text-align: left;">
+      <tr>
+        <td rowspan="2">
+          <canvas id="canvas" width="500" height="500"></canvas>
+        </td>
+        <td rowspan="2" style="width: 20px;"></td>
+        <th>
+          <h2 style="margin-bottom: 8px; vertical-align: top;">User-Guide</h2>
+        </th>
+      </tr>
+      <tr>
+        <td style="vertical-align: top; line-height: 1.5;">
+          <b>1.</b> Enter a number of sides (3+).
+          <br><br>
+          <b>2.</b> Pick a color using the color picker.
+          <br><br>
+          <b>3.</b> Click on the <i>Add Cylinder</i> button.
+          <br><br>
+          <b>4.</b> You can use the toggle button to see <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;the wireframe model.
+          <br><br>
+          <b>5.</b> Use <i>Select Cylinder</i> to select the cylinder
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;you want to transform.
+          <br><br>
+          <b>6.</b> Play around with the sliders to move,
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;scale, and rotate the selected cylinder.
+          <br><br>
+          <a href="https://github.com/danxelaa/cylinder-model">>> Github Repository</a>
+        </td>
+      </tr>
+      <tr>
+    </table>
+    <!-- Create Cylinder -->
+    <table>
+      <tr>
+        <th colspan="4" style="text-align: left;">
+          <strong><h3>Create Cylinder:</h3></strong>
+        </th>
+      <tr>
+        <td style="width: 100px;">
+          # of sides:
+        </td>
+        <td>
+          <input id="nsides" type="number" style="width: 50px" min="3" placeholder="Min 3"></input>
+        </td>
+        <td style="width: 30px"></td>
+        <td style="width: 100px;">
+          Wireframe Mode:
+        </td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" onclick="wireframeMode()" id="wireframe">
+            <div class="slider round">
+              <span class="on">ON</span>
+              <span class="off">OFF</span>
+            </div>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Color:
+          <!-- <input id="color" type="color" value="#8C0077"></input> -->
+        </td>
+        <td>
+          <input id="color" type="color" value="#8C0077"></input>
+        </td>
+        <td>
+
+        </td>
+        <td style="width: 100px;">
+          <br>
+            <button type="button" onclick="inputCylinder()">Add Cylinder</button>
+        </td>
+        <td>
+          <br>
+          <button id="delete-all" onclick="deleteAll()">Clear Canvas</label>
+        </td>
+      </tr>
+    </table>
+    <br>
+
+    <!-- START transform inputs wrapper -->
+    <div>
+      <hr/><br>
+      <div>
+        Select Cylinder: 
+        <select id="cylSelect" style="width: 90px; margin-left:2px">
+          <option selected disabled></option>
+        </select>
+          <input type="button" value="Remove Selected" id="clear-btn" onclick="removeSelected()">
+      </div>
+      <br/>
+      <table>
+        <tr>
+          <td></td>
+          <td style="text-align:center">x</td>
+          <td style="text-align:center">y</td>
+          <td style="text-align:center">z</td>
+        </tr>
+        <tr>
+          <td>Translate:</td>
+          <td><input type="range" min="-100" max="100" oninput="userTranslate(this.value, 'x')"></input></td>
+          <td><input type="range" min="-100" max="100" oninput="userTranslate(this.value, 'y')"></input></td>
+          <td><input type="range" min="-100" max="100" oninput="userTranslate(this.value, 'z')"></input></td>
+        </tr>
+        <tr>
+          <td>Rotate:</td>
+          <td><input type="range" min="0" max="360" oninput="userRotate(this.value, 'x')"></input></td>
+          <td><input type="range" min="0" max="360" oninput="userRotate(this.value, 'y')"></input></td>
+          <td><input type="range" min="0" max="360" oninput="userRotate(this.value, 'z')"></input></td>
+        </tr>
+        <tr>
+          <td>Scale:</td>
+          <td><input type="range" min="1" max="200" oninput="userScale(this.value, 'x')"></input></td>
+          <td><input type="range" min="1" max="200" oninput="userScale(this.value, 'y')"></input></td>
+          <td><input type="range" min="1" max="200" oninput="userScale(this.value, 'z')"></input></td>
+        </tr>
+        <tr>
+          <td style="text-align:center">Scale xyz:</td>
+          <td><input type="range" min="1" max="200" oninput="userScale(this.value, 'all')"></input></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
