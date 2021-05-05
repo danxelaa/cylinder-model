@@ -1,8 +1,5 @@
-// asg2.js
-// CSE160 - Program 2: Transformation of Fancier Model
+// script.js
 // Daniela A. Olano Guia
-// dolanogu
-// from Lucas's asg2.js starter code (Thanks Lucas!)
 
 // Shaders (GLSL)
 let VSHADER=`
