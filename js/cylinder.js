@@ -1,8 +1,5 @@
 // cylinder.js
-// CSE160 - Program 2: Transformation of Fancier Model
 // Daniela A. Olano Guia
-// dolanogu
-// from Luca's cube.js starter code
 
 class Cylinder {
   constructor(n, color) {
